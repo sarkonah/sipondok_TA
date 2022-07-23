@@ -15,25 +15,63 @@ class data_kelas extends CI_Controller
 	// 	}
 	// }
 
+	public function gak_kanggo()
+	{
+		$id_walikelas 	= $this->session->userdata('id_user');
+		$kelas 		= $this->db->get_where('kelas', ['id_user' => $id_walikelas])->row();
+
+		$data['santri'] = $this->db->get_where('santri', ['id_kelas' => $kelas->id_kelas])->result();
+		$data['mapel'] = $this->db->get_where('mapel', ['id_kelas' => $kelas->id_kelas])->result();
+		$data['tahun'] = $this->model_kelas_guru->tahun($kelas->id_kelas)->result();
+		// echo json_encode($tahun);
+		// exit;
+		// $data['santri'] = $this->model_input_rapor($id_walikelas)->result_array();
+		// $data['mapel'] = $this->model_input_rapor->tampil_data()->result();
+		// $data['pelajaran'] = $this->model_input_rapor->get_kelas($id_walikelas)->result();
+		// echo json_encode($data['mapel']);
+		// exit;
+		// $tahun = array();
+		// foreach ($santri as $str) {
+		// 	$tahun[] = $this->db->get_where('history_kelas', array('id_santri' => $str->id_santri)->row());
+		// }
+		// $data['tahun'] = $this->db->select("*")->limit(1)->order_by('tahun', "DESC")->get_where('history_kelas', ['id_kelas' => $kelas->id_kelas])->row()->tahun;
+
+		$this->load->view('templates_guru/header');
+		$this->load->view('templates_guru/sidebar');
+		$this->load->view('guru/kelas', $data);
+		$this->load->view('templates_guru/footer');
+	}
+
 	public function index()
 	{
 		$id_walikelas 	= $this->session->userdata('id_user');
 		$kelas 		= $this->db->get_where('kelas', ['id_user' => $id_walikelas])->row();
-		$santri = $this->db->get_where('santri', ['id_kelas' => $kelas->id_kelas])->result_array();
+		$th = $this->db->select("*")->limit(1)->order_by('tahun', "DESC")->get_where('history_kelas', ['id_kelas' => $kelas->id_kelas])->row()->tahun;
 
-		$data['santri'] = $this->db->get_where('santri', ['id_kelas' => $kelas->id_kelas])->result();
-		// $data['santri'] = $this->model_input_rapor($id_walikelas)->result_array();
-		$data['mapel'] = $this->model_input_rapor->tampil_data()->result();
-		$data['pelajaran'] = $this->model_input_rapor->get_kelas($id_walikelas)->result();
-		// var_dump($santri);
-		// die;
-		$tahun = array();
-		foreach ($santri as $str) {
-			$tahun[] = $this->db->get_where('history_kelas', ['id_santri' => $str['id_santri']])->row();
+		$tahun = $this->input->post('tahun');
+		if ($tahun == "") {
+			$tahun = $th;
 		}
-		$data['tahun_now'] = $tahun;
-		// var_dump($tahun);
-		// die;
+
+		$data['tahun_filter'] = $tahun;
+
+		$data['santri'] = $this->model_kelas_guru->filter($kelas->id_kelas, $tahun)->result();
+		$data['rapor'] = $this->model_kelas_guru->get_nilai($kelas->id_kelas, $tahun)->result();
+		$data['tahun'] = $this->model_kelas_guru->tahun($kelas->id_kelas)->result();
+
+		// $data['santri'] = $this->db->get_where('santri', ['id_kelas' => $kelas->id_kelas])->result();
+		$data['mapel'] = $this->db->get_where('mapel', ['id_kelas' => $kelas->id_kelas])->result();
+		// echo json_encode($data['rapor']);
+		// exit;
+		// $data['santri'] = $this->model_input_rapor($id_walikelas)->result_array();
+		// $data['mapel'] = $this->model_input_rapor->tampil_data()->result();
+		// $data['pelajaran'] = $this->model_input_rapor->get_kelas($id_walikelas)->result();
+		// echo json_encode($data['mapel']);
+		// exit;
+		// $tahun = array();
+		// foreach ($santri as $str) {
+		// 	$tahun[] = $this->db->get_where('history_kelas', array('id_santri' => $str->id_santri)->row());
+		// }
 
 		$this->load->view('templates_guru/header');
 		$this->load->view('templates_guru/sidebar');

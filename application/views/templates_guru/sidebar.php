@@ -71,7 +71,7 @@
 
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto align-items-center">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
 
@@ -79,22 +79,26 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                        <!-- <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
+                            </a> -->
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
                             </div>
+                        </li> -->
+                        <li class="nav-item">
+                            <a href="#" data-toggle="modal" data-target="#logout"><b>Logout</b>
+                                <i class="fas fa-power-off "></i>
+                            </a>
                         </li>
-
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
@@ -137,3 +141,26 @@
                         </form>
                     </div>
                 </div> -->
+
+                <div class="modal fade" id="logout" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Keluar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <span>
+                            Apakah Anda yakin ingin keluar ?
+                        </span>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button class="btn btn-sm btn-primary col-2 mr-2" type="button" class="close" data-dismiss="modal" >Tidak</button>
+                            <button class="btn btn-sm btn-danger col-2 ml-2" onclick="window.location.href='<?=base_url(('login/logout'))?>'">Iya</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                

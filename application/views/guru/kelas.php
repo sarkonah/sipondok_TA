@@ -9,7 +9,7 @@
             <div class="d-flex align">
                 <div class="col">
                     <div class="form-group">
-                        <form action="<?= base_url() ?>guru/data_kelas/filter" method="POST">
+                        <form action="<?= base_url() ?>guru/data_kelas" method="POST">
                             <dt class="mb-2">Tahun</dt>
                             <div class="d-flex">
                                 <select name="tahun" id="" class="form-control col-2 mr-1">
@@ -109,9 +109,9 @@
                                                     <input type="number" name="nilai[]" id="nilai" onkeyup="b()" class="form-control" min="0" max="100" required oninvalid="this.setCustomValidity('Data wajib diisi!')" oninput=" setCustomValidity('')">
                                                 <?php endif;
                                                 $cek = 1 ?>
-                                                <?php if (empty($rapor)) : ?>
+                                                <!-- <?php if (empty($rapor)) : ?>
                                                     <input type="number" name="nilai[]" id="nilai" onkeyup="b()" class="form-control" min="0" max="100" required oninvalid="this.setCustomValidity('Data wajib diisi!')" oninput=" setCustomValidity('')">
-                                                <?php endif ?>
+                                                <?php endif ?> -->
                                             </td>
                                             <input type="text" name="id_mapel[]" value="<?php echo $mpl->id_mapel ?>" hidden>
 

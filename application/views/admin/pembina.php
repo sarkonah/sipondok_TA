@@ -56,7 +56,6 @@
                         </a>
                     </td>
                 </tr>
-
                 <?php endforeach; ?>
         </div>
         </table>

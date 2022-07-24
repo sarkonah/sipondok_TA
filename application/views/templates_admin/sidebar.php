@@ -41,8 +41,8 @@
                         <a class="collapse-item" href="<?= base_url('admin/data_rapor') ?>">Rapor</a>
                         <!-- Rapor per santri (karena ga ada kenaikan per semester) -->
                         <!-- Saran pengaduan -->
-                        <!-- <a class="collapse-item" href="<?= base_url('admin/data_janji') ?>">Janji
-                            Temu</a> -->
+                        <a class="collapse-item" href="<?= base_url('admin/data_janji') ?>">Janji
+                            Temu</a>
                         <!-- Untuk Buat Jadwal Janji temu, nanti isinya, hari sama nama pembina terus ada wa gateway nya -->
                     </div>
                 </div>

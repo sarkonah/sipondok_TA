@@ -3,7 +3,7 @@
         <div class="card-header">
             Data Pembina
         </div>
-        <?=$this->session->flashdata('pesan_janji')?>
+        <?= $this->session->flashdata('pesan_janji') ?>
         <div class="card-body">
             <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                 <tr>
@@ -16,20 +16,19 @@
                 <?php
                 $no = 1;
                 foreach ($pembina as $pmb) : ?>
-                <tr>
-                    <td><?php echo $no++ ?></td>
-                    <td><?php echo $pmb->nama_pembina?> </td>
-                    <td><?php echo $pmb->status ?></td>
-                    <td><?php echo $pmb->dom_pembina ?></td>
-                    <td align="center" style="width: 50">
-                        <a href="#" class=" btn btn-primary btn-circle" data-toggle="modal"
-                            data-target="#wa<?= $pmb->id_pembina ?>">
-                            <span class="icon text-white-50">
-                                <i class="fab fa-whatsapp"></i>
-                            </span>
-                        </a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?php echo $no++ ?></td>
+                        <td><?php echo $pmb->nama_pembina ?> </td>
+                        <td><?php echo $pmb->status ?></td>
+                        <td><?php echo $pmb->dom_pembina ?></td>
+                        <td align="center" style="width: 50">
+                            <a href="#" class=" btn btn-primary btn-circle" data-toggle="modal" data-target="#wa<?= $pmb->id_pembina ?>">
+                                <span class="icon text-white-50">
+                                    <i class="fab fa-whatsapp"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </table>
         </div>
@@ -37,16 +36,14 @@
 </div>
 
 <?php foreach ($pembina as $pmb) : ?>
-    <div class=" modal fade" id="wa<?= $pmb->id_pembina ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class=" modal fade" id="wa<?= $pmb->id_pembina ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class=" modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Kirim Pesan Pembina</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url('data_janji/send_message/') ?>" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="<?= base_url('admin/data_janji/send_message/') ?>" method="POST" enctype="multipart/form-data">
                         <span>
                             Nomor WhatsApp
                         </span>
@@ -54,11 +51,9 @@
                         <span>
                             pesan
                         </span>
-                        <textarea type="text" name="pesan" class="form-control"
-                            placeholder="Masukkan Pesan"></textarea>
+                        <textarea type="text" name="pesan" class="form-control" placeholder="Masukkan Pesan"></textarea>
                         <div class="d-flex justify-content-end mt-3">
-                            <button class="btn btn-danger btn-sm mr-1" type="button"
-                                data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger btn-sm mr-1" type="button" data-dismiss="modal">Batal</button>
                             <button class="btn btn-success btn-sm ml-1" type="submit">Kirim</button>
                         </div>
                     </form>
